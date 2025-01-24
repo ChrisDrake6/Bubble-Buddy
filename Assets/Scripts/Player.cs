@@ -18,14 +18,19 @@ public enum Movedirection
 
 public class Player : MonoBehaviour
 {
+
     //Components
     private new Rigidbody2D rigidbody2D;
+
+    private Collider2D overlapCircle;
+    [SerializeField] private float groundcheckRadius;
 
     //movement
     [SerializeField] private Jumpstate jumpstate;
     [SerializeField] private Movedirection movedirection;
     [SerializeField] private float speed;
     [SerializeField] private float jumpforce;
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +46,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Groundcheck();
         Move();
     }
 
@@ -54,7 +60,19 @@ public class Player : MonoBehaviour
         if (jumpstate == Jumpstate.WantJump)
         {
             rigidbody2D.AddForce(jumpforce * Vector2.up, ForceMode2D.Impulse);
-            jumpstate = Jumpstate.OnGround;
+            jumpstate = Jumpstate.InJump;
+        }
+    }
+
+    /// <summary>
+    /// checks, if character is on Ground and sets Jumpstate
+    /// </summary>
+    private void Groundcheck()
+    {
+        overlapCircle = Physics2D.OverlapCircle(transform.position - new Vector3(0, transform.localScale.y, 0), groundcheckRadius, ~LayerMask.GetMask("Player"));
+        if (overlapCircle && !(jumpstate == Jumpstate.WantJump))
+        {
+            jumpstate = Jumpstate.OnGround; 
         }
     }
 
