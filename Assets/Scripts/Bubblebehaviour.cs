@@ -2,35 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bubblebehaviour : MonoBehaviour
+namespace BubbleBuddy
 {
-    [SerializeField] private Player player;
-    [SerializeField] private float lineLength;
-    [SerializeField] private float lineforce;
-    private new Rigidbody2D rigidbody2D;
+    //isnt used anywere
 
-    private void Start()
+    public class Bubblebehaviour : MonoBehaviour
     {
-        rigidbody2D = GetComponent<Rigidbody2D>();
-    }
+        [SerializeField] private Player player;
+        [SerializeField] private float lineLength;
+        [SerializeField] private float lineforce;
+        private new Rigidbody2D rigidbody2D;
 
-    private void FixedUpdate()
-    {
-        Linestop();
-        Debug.Log((transform.position - player.transform.position).magnitude);
-    }
-
-    private void Linestop()
-    {
-        if ((transform.position - player.transform.position).magnitude > lineLength)
+        private void Start()
         {
-            //transform.position = lineLength * (-player.transform.position + transform.position).normalized;
-            rigidbody2D.AddForce(lineforce * -transform.position + player.transform.position, ForceMode2D.Impulse);
+            rigidbody2D = GetComponent<Rigidbody2D>();
         }
-    }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(transform.position, player.transform.position);
+        private void FixedUpdate()
+        {
+            Linestop();
+        }
+
+        private void Linestop()
+        {
+            if ((transform.position - player.transform.position).magnitude > lineLength)
+            {
+                //transform.position = lineLength * (-player.transform.position + transform.position).normalized;
+                rigidbody2D.AddForce(lineforce * -transform.position + player.transform.position, ForceMode2D.Impulse);
+            }
+        }
     }
 }
