@@ -2,21 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Leashdetector : MonoBehaviour
+namespace BubbleBuddy
 {
-    //private Collider2D myTrigger;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Leashdetector : MonoBehaviour
     {
-        //myTrigger = GetComponent<Collider2D>();
-    }
+        private Hand hand;
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("TakeLeashDistance"))
+        private void Start()
         {
-            Debug.Log("Laesh detected!");
+            hand = GetComponentInParent<Hand>();
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("TakeLeashDistance"))
+            {
+                if (other.attachedRigidbody.gameObject.TryGetComponent<Leash>(out Leash myLeash))
+                {
+                    if (myLeash.thatWhichHoldsMe != null)
+                    {
+                        myLeash.thatWhichHoldsMe.TurnOffLeashAnchor();
+                    }
+                    hand.transform.position = myLeash.MyAnchorknot.transform.position;
+                    hand.TurnOnLeashAnchor();
+                }
+            }
         }
     }
 }

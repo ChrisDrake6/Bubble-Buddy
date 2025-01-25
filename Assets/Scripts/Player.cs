@@ -57,7 +57,7 @@ namespace BubbleBuddy
         /// </summary>
         private void Move()
         {
-            //rigidbody2D.AddForce((int)movedirection * speed * Vector2.right, ForceMode2D.Force);
+            //rigidbody2D.AddForce((int)movedirection * lerpSpeedBackToPosition * Vector2.right, ForceMode2D.Force);
             rigidbody2D.velocity = new Vector2((int)movedirection * speed, rigidbody2D.velocity.y);
             if (jumpstate == Jumpstate.WantJump)
             {
