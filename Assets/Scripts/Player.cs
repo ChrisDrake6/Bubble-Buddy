@@ -107,7 +107,7 @@ namespace BubbleBuddy
         private void Groundcheck()
         {
             overlapCircle = Physics2D.OverlapCircle(transform.position - new Vector3(0, transform.localScale.y, 0), groundcheckRadius, ~LayerMask.GetMask("Player"));
-            
+
             if (overlapCircle && !(jumpstate == Jumpstate.WantJump))
             {
                 jumpstate = Jumpstate.OnGround;

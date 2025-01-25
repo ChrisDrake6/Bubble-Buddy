@@ -29,8 +29,7 @@ public class CheckpointUser : MonoBehaviour
     {
         transform.position = lastCheckpoint;
         bubble.transform.position = new Vector2(transform.position.x, transform.position.y + offsetBubbleToPlayer);
-        distanceJoint.gameObject.SetActive(true);
-        lineRenderer.gameObject.SetActive(true);
+        distanceJoint.GetComponent<Bubble>().Grab();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

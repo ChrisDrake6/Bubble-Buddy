@@ -845,6 +845,7 @@ GameObject:
   - component: {fileID: 994032121}
   - component: {fileID: 994032120}
   - component: {fileID: 994032123}
+  - component: {fileID: 994032124}
   m_Layer: 6
   m_Name: Bubble
   m_TagString: Bubble
@@ -1002,6 +1003,22 @@ DistanceJoint2D:
   m_AutoConfigureDistance: 0
   m_Distance: 4
   m_MaxDistanceOnly: 1
+--- !u!114 &994032124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994032118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dad014fa8f118ee4e887a143755f6bd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionKey: 101
+  distanceJoint: {fileID: 994032123}
+  lineRenderer: {fileID: 524156938}
+  isGrabbed: 1
 --- !u!1 &1049378244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,7 +1295,7 @@ Transform:
   m_GameObject: {fileID: 1226937141}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.149918, y: -3.9671907, z: 0}
+  m_LocalPosition: {x: -1.2, y: -4.37, z: 0}
   m_LocalScale: {x: 3.2702, y: 0.7346, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
